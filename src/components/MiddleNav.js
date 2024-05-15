@@ -1,0 +1,32 @@
+import React from "react";
+import { FaSearch } from "react-icons/fa";
+
+const Navbar = () => {
+    return (
+        <div className="flex justify-center items-center bg-blur" >
+            <div className="flex bg-gray-400 dark:bg-gray-400 rounded-full">
+            <div className="bg-gray-400 p-2 rounded-full ">
+                <FaSearch className="text-white"/>
+            </div>
+            <div >
+                <input className="border-0 focus:outline-none text-white bg-gray-400 dark:bg-gray-400 w-96 h-8 mr-4 dark:" />
+            </div>
+            </div>
+            <div className="flex justify-between font-semibold pl-24">
+                <div className="w-20 flex justify-center ">
+                    <a className="cursor-pointer text-gray-700 dark:text-gray-500  hover:text-customBlue dark:hover:text-gray-200">Explore</a>
+                </div>
+                <div className="w-20 flex justify-center">
+                    <a className="cursor-pointer text-gray-700  dark:text-gray-500  hover:text-customBlue dark:hover:text-gray-200">Stats</a>
+                </div>
+                <div className="w-20 flex justify-center">
+
+                    <a className="cursor-pointer text-gray-700  dark:text-gray-500  hover:text-customBlue dark:hover:text-gray-200">Create</a>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+export default Navbar;
