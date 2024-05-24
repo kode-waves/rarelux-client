@@ -1,3 +1,4 @@
+
 //css
 import "./globals.css";
 
@@ -22,14 +23,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} dark:bg-[#0C1019] ${switchThemeDuration} `}>
+      <body className={`${poppins.className} dark:bg-darkModeColor ${switchThemeDuration} `}>
         {/* theme provider can get the value for dark or light mode */}
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {/* Header */}
             <Navbar />
           {/* Main Content Container */}
           <div className="flex justify-center pt-[64px]">
-            <div className="max-w-[2080px] w-full">
+            <div className="max-w-custom w-full">
               {children}
             </div>
           </div>

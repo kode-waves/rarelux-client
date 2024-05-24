@@ -18,8 +18,12 @@ module.exports = {
       },
     },
     extend: {
+      maxWidth: {
+        'custom': '2080px', // Add your custom max width here
+      },
       colors: {
         customBlue:'#00308F',
+        darkModeColor: "#0C1019",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
