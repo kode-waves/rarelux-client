@@ -17,13 +17,13 @@ const TrendingTop10 = () => {
 
     return (
         <>
-            <div className="py-12 ">
+            <div className="py-12">
                 <div className="flex">
                     <HeadingButton name="Trending" onClick={() => setIsActive(0)} condition={isActive === 0} />
                     <HeadingButton name="Top10" onClick={() => setIsActive(1)} condition={isActive === 1} />
                 </div>
             </div>
-            <div className="py-5 overflow-auto bg-gray-100 rounded-xl shadow-xl dark:bg-[#0C111A]">
+            <div className="py-5 overflow-auto bg-gray-100 rounded-xl  dark:bg-[#0C111A]">
                 <div className="px-12">
                     <div className="flex justify-between ">
                         <div>
