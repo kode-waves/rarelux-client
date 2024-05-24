@@ -25,7 +25,7 @@ const TrendingTop10 = () => {
             </div>
             <div className="py-5 overflow-auto bg-gray-100 rounded-xl shadow-xl dark:bg-[#0C111A]">
                 <div className="px-12">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between ">
                         <div>
                             {firstHalf.map((trending, index) => (
                                 <TrendingTop10Layout trending={trending} index={index} />
