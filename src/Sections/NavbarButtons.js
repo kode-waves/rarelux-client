@@ -15,25 +15,24 @@ const NavbarButtons = () => {
     setMounted(true);
   }, []);
 
-
   if (!mounted) {
     return null;
   }
 
-  const icons = [<FaMoon size={24} />, <LuWallet2 size={24} />, <FaUser size={24} />];
+  const icons = [<FaMoon size={24} key="moon" />, <LuWallet2 size={24} key="wallet" />, <FaUser size={24} key="user" />];
 
   return (
     <>
     <div className="flex justify-center items-center">
       {icons.map((Icon, index) => (
         <div key={index} className="inline-block mr-2">
-          <button className="bg-gray-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:bg-gray-800" onClick={() => setTheme(index == 0 ? theme === "dark" ? "light" : "dark": theme)}>
-            {index == 0  && theme == 'dark' ? <LuSun size={24} /> : Icon}
+          <button className="bg-gray-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:bg-gray-800" onClick={() => setTheme(index === 0 ? (theme === "dark" ? "light" : "dark") : theme)}>
+            {index === 0 && theme === 'dark' ? <LuSun size={24} /> : Icon}
           </button>
         </div>
       ))}
     </div>
-      </>
+    </>
   );
 }
 
