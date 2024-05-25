@@ -1,10 +1,12 @@
 import React from "react";
+import AvatarCard from "./AvatarCard";
 
-const TrendingTop10Layout = ({ index, trending }) => {
+const TrendingTop10Layout = (props) => {
+    const {trending} = props
     return (
-        <div key={index} className="px-2 rounded-xl hover:bg-white dark:hover:bg-gray-800 flex py-2 items-center justify-between cursor-pointer w-[54rem]">
+        <div className="px-2 rounded-xl hover:bg-white dark:hover:bg-gray-800 flex py-2 items-center justify-between cursor-pointer w-[54rem]">
             <div className="flex items-center">
-                <img className="bg-black rounded-full w-20" src={trending.src} alt="image" />
+               <AvatarCard src ={trending.src} name={trending.name} className=" w-20"/>
                 <div className="px-3">
                     <h1 className="font-semibold text-gray-800 dark:text-white w-40">{trending.name}</h1>
                     <h1 className="font-semibold text-gray-400 dark:text-gray-400">{trending.rank}</h1>

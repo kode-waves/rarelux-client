@@ -9,7 +9,7 @@ import Categories from "@/Sections/Categories";
 
 const Home = () => {
   return(
-    <div className="pt-5 px-12 h-32 rounded-lg">
+    <div className=" px-12 rounded-lg">
       
       {/* using Slider to see all the Images */}
       <NextCarosel/>
