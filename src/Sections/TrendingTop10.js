@@ -8,12 +8,11 @@ import HeadingButton from "@/components/HeadingButton";
 const TrendingTop10 = () => {
     const [isActive, setIsActive] = useState(0);
 
-    let data = isActive == 0 ? TrendingCard : Top10Data
+    const data = isActive == 0 ? TrendingCard : Top10Data;
 
     const halfLength = Math.ceil(data.length / 2);
     const firstHalf = data.slice(0, halfLength);
     const secondHalf = data.slice(halfLength);
-
 
     return (
         <>
@@ -28,12 +27,12 @@ const TrendingTop10 = () => {
                     <div className="flex justify-between ">
                         <div>
                             {firstHalf.map((trending, index) => (
-                                <TrendingTop10Layout trending={trending} index={index} />
+                                <TrendingTop10Layout trending={trending} key={index} />
                             ))}
                         </div>
                         <div>
                             {secondHalf.map((trending, index) => (
-                                <TrendingTop10Layout trending={trending} index={index} />
+                                <TrendingTop10Layout trending={trending} key={index} />
                             ))}
                         </div>
                     </div>
