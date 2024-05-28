@@ -8,7 +8,7 @@ const TrendingTop10Layout = (props) => {
             <div className="flex items-center">
                <AvatarCard src ={trending.src} name={trending.name} className=" w-20"/>
                 <div className="px-3">
-                    <h1 className="font-semibold text-gray-800 dark:text-white w-40">{trending.name}</h1>
+                    <h1 className="font-semibold text-gray-800 dark:text-gray-100 w-40">{trending.name}</h1>
                     <h1 className="font-semibold text-gray-400 dark:text-gray-400">{trending.rank}</h1>
                 </div>
             </div>
