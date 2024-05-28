@@ -1,5 +1,6 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
+import Link from 'next/link'
 
 const Navbar = () => {
     return (
@@ -13,19 +14,21 @@ const Navbar = () => {
             </div>
             </div>
             <div className="flex justify-between font-semibold pl-24">
-                <div className="w-20 flex justify-center ">
-                    <a className="cursor-pointer text-gray-700 dark:text-gray-500  hover:text-customBlue dark:hover:text-gray-200">Explore</a>
-                </div>
-                <div className="w-20 flex justify-center">
-                    <a className="cursor-pointer text-gray-700  dark:text-gray-500  hover:text-customBlue dark:hover:text-gray-200">Stats</a>
-                </div>
-                <div className="w-20 flex justify-center">
-
-                    <a className="cursor-pointer text-gray-700  dark:text-gray-500  hover:text-customBlue dark:hover:text-gray-200">Create</a>
-                </div>
+                <Redirect  link={"/explore"} name="Explore"/>
+                <Redirect  link={"/explore"} name="Stats"/>
+                <Redirect  link={"/explore"} name="Create"/>
             </div>
         </div>
     )
+}
+
+const Redirect = (props) => {
+   const {link, name} = props;
+   return(
+    <div className="w-20 flex justify-center">
+    <Link href={link} className="cursor-pointer text-gray-700 dark:text-gray-500  hover:text-customBlue dark:hover:text-gray-200">{name}</Link>
+</div>
+   )
 }
 
 
