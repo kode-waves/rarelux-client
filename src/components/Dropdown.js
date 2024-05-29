@@ -15,19 +15,19 @@ import {
 import { FaChevronDown } from "react-icons/fa";
 
 const Dropdown = (props) => {
-    const {list, position, setPosition} = props;
+    const {list, position, setPosition, fixedName} = props;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button >{list[position]}<FaChevronDown /></Button>
+        <Button >{list[position]}<FaChevronDown className="ml-1" /></Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="">
         {/* <DropdownMenuLabel>Panel Position</DropdownMenuLabel> */}
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+        <DropdownMenuRadioGroup value={position} key={position} onValueChange={setPosition}>
           {list.map((name, index) => {
          return <>
-         <DropdownMenuRadioItem value={index}>{name}</DropdownMenuRadioItem>
+         <DropdownMenuRadioItem key={index} value={index} >{fixedName ? name + " " + fixedName : name}</DropdownMenuRadioItem>
          {/* <DropdownMenuSeparator />  */}
          </>
           })}

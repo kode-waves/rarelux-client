@@ -276,6 +276,56 @@ const JwelleriesData = [
       return (nameParts[0][0] + nameParts[1][0]).toUpperCase();
     }
   };
+
+
+
+  const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+const getRandomPercentage = () => (Math.random() * 100).toFixed(2) + '%';
+
+const getRandomCollectionName = () => {
+  const names = ["John Doe", "Alice Smith", "Emma Johnson", "Michael Brown", "Olivia Davis"];
+  return names[Math.floor(Math.random() * names.length)];
+};
+
+const getRandomVolume = () => (Math.random() * 10).toFixed(4) + ' ETH';
+
+const getRandomFloorPrice = () => (Math.random() * 5).toFixed(4) + ' ETH';
+
+const getRandomSales = () => getRandomNumber(1, 100);
+
+const getRandomChange = () => getRandomNumber(-50, 50) + '%';
+
+const getRandomOwnersCount = () => getRandomNumber(100, 5000) + ' owners';
+
+const getRandomItemsListedCount = () => getRandomNumber(10, 1000) + ' of 10000';
+
+const generateRandomDataList = (length) => {
+  const dataList = [];
+
+  for (let i = 0; i < length; i++) {
+    const rank = i + 1;
+    const collection = getRandomCollectionName();
+    const collectionImg = ''; // You can provide an image URL here if available
+    const volume = getRandomVolume();
+    const floorPrice = getRandomFloorPrice();
+    const sales = getRandomSales();
+    const change = getRandomChange();
+    const uniqueOwnersPercentage = getRandomPercentage();
+    const owners = getRandomOwnersCount();
+    const itemsListedPercentage = getRandomPercentage();
+    const itemsListed = getRandomItemsListedCount();
+
+    dataList.push({ rank, collection, collectionImg, volume, floorPrice, sales, change, uniqueOwnersPercentage, owners, itemsListedPercentage, itemsListed });
+  }
+
+  return dataList;
+};
+
+ generateRandomDataList;
+
+
+
   
 
-export {navRouting, TrendingCard, Top10Data, getInitials, JwelleriesData}
+export {navRouting, TrendingCard, Top10Data, getInitials, JwelleriesData, generateRandomDataList}
