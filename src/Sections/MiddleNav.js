@@ -2,6 +2,7 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import Link from 'next/link'
 
+
 const Navbar = () => {
     return (
         <div className="flex justify-center items-center bg-blur" >
@@ -15,8 +16,9 @@ const Navbar = () => {
             </div>
             <div className="flex justify-between font-semibold pl-24">
                 <Redirect  link={"/explore"} name="Explore"/>
-                <Redirect  link={"/explore"} name="Stats"/>
+                <Redirect  link={"/Stats"} name="Stats"/>
                 <Redirect  link={"/explore"} name="Create"/>
+                {/* <DialogDemo/> */}
             </div>
         </div>
     )
