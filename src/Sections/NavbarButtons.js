@@ -1,69 +1,93 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
-import { LuWallet2, LuSun } from "react-icons/lu";
-import { FaUser, FaMoon } from "react-icons/fa";
-import PopupModel from "@/components/LoginPopup";
-import Image from 'next/image';
-import { Input } from "@/components/ui/input";
+"use client"; // Ensure the code runs in the client-side environment
+
+import { useState, useEffect, useContext } from "react";
+import { useTheme } from "next-themes"; // Theme management hook
+import { LuWallet2, LuSun } from "react-icons/lu"; // Wallet and sun icons
+import { FaUser, FaMoon } from "react-icons/fa"; // User and moon icons
+import { AccountContext } from '../context/context'; // Account management context
+import LoginPopup from "@/components/LoginPopup"; // LoginPopup component
+import Image from "next/image";
 import Logo from "@/app/Images/logo.png";
-import { useContext } from 'react';
-import { AccountContext } from '../context/context';
+import PopupModel from "@/components/PopupModel"; // Popup model component
+import NextHoverCard from "@/components/HoverCard"; // Hover card component
+import storage from "@/lib/localstorage"; // Local storage utility
+
 
 const NavbarButtons = () => {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const { account, connectWallet } = useContext(AccountContext);
+  const [mounted, setMounted] = useState(false); // Check if the component is mounted
+  const [load, setLoad] = useState(false); // Trigger re-render
+  const [address, setAddress] = useState(storage.Get('account')); // Address from local storage
+  const [balance, setBalance] = useState(storage.Get('wallet')); // Wallet balance from local storage
+  const { account, walletBalance, connectWallet, setAccount } = useContext(AccountContext); // Context state and functions
+  const { theme, setTheme } = useTheme(); // Theme management
 
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+  // Set mounted state and load data from local storage on mount
+  useEffect(() => {
+    setMounted(true);
+    setAddress(storage.Get('account'));
+    setBalance(storage.Get('wallet'));
+    setLoad(false);
+  }, [load]);
 
-  const handleClick = () => {
-    console.log("Button clicked"); // Debugging line
-    connectWallet();
-  };
+  if (!mounted) return null; // Return null if the component is not yet mounted
 
+  // Toggle between dark and light themes
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  const PopupContent = () => (
-    <>
-      <div className="flex justify-center">
-        <Image src={Logo} alt="RareLux Logo" className="w-20 py-4" />
-      </div>
-      <button className="bg-[#f6851b] py-2 rounded-md text-white w-full hover:bg-[#cd6116]" onClick={handleClick} type="submit">
-        Login From MetaMask
-      </button>
-      <div className="flex justify-center my-2">
-          <span>Or</span>
-        
-      </div>
-      <Input placeholder="Email" type="email" className="h-12 outline-none w-full mb-2" />
-      <button className="bg-blue-500 py-2 rounded-md text-white w-full" type="submit">
-        Login From Email
-      </button>
-    </>
-  );
-
-  const IconButton = ({ icon, onClick }) => (
-    <button
-      className="bg-gray-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:bg-gray-800 mr-2"
-      onClick={onClick}
-    >
-      {icon}
-    </button>
-  );
+  // Handle logout and clear local storage
+  const handleLogout = () => {
+    storage.Delete('account');
+    storage.Delete('wallet');
+    setAccount(null)
+    setLoad(true);
+  };
 
   return (
     <div className="flex justify-center items-center">
-      <IconButton icon={theme === "dark" ? <LuSun size={24} /> : <FaMoon size={24} />} onClick={toggleTheme} />
-      <PopupModel title="Connect To RareLux" button={<IconButton icon={<LuWallet2 size={24} />} />}>
-        <PopupContent />
-      </PopupModel>
-      <PopupModel title="Connect To RareLux" button={<IconButton icon={<FaUser size={24} />} />}>
-        <PopupContent />
-      </PopupModel>
+      {/* Toggle theme button */}
+      <IconButton
+        icon={theme === "dark" ? <LuSun size={24} /> : <FaMoon size={24} />}
+        onClick={toggleTheme}
+      />
+      {/* Wallet connect button with popup */}
+      {account || balance ? (
+        <PopupModel
+          title="Your Wallet"
+          button={<IconButton icon={<LuWallet2 size={24} />} />}
+        >
+          <h1>Your Wallet balance: {walletBalance}</h1>
+        </PopupModel>
+      ) : (
+        <LoginPopup
+          button={<IconButton icon={<LuWallet2 size={24} />} />}
+          connectWallet={connectWallet}
+        />
+      )}
+      {/* User login button with popup */}
+      {account || address ? (
+        <NextHoverCard button={<button>
+          <Image src={Logo} alt="Image" className="w-10 " />
+        </button>} hoverBodyclassName="w-24">
+          <button onClick={handleLogout}>Logout</button>
+        </NextHoverCard>
+      ) : (
+        <LoginPopup
+          button={<IconButton icon={<FaUser size={24} />} />}
+          connectWallet={connectWallet}
+        />
+      )}
     </div>
   );
 };
 
 export default NavbarButtons;
+
+// Reusable icon button component
+const IconButton = ({ icon, onClick }) => (
+  <button
+    className="bg-gray-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:bg-gray-800 mr-2"
+    onClick={onClick}
+  >
+    {icon}
+  </button>
+);
