@@ -7,6 +7,7 @@ import LoginPopup from "@/components/LoginPopup";
 import { AccountContext } from '../context/context';
 import storage from "@/lib/localstorage";
 import { usePathname } from 'next/navigation';
+import Redirects from "./Redirects";
 
 const MiddleNav = () => {
   const { account, connectWallet } = useContext(AccountContext);
@@ -39,22 +40,9 @@ const MiddleNav = () => {
           <input className="border-0 focus:outline-none text-white bg-gray-400 dark:bg-gray-400 w-96 h-8 mr-4" />
         </div>
       </div>
-      <div className="flex justify-between font-semibold pl-24">
-        <Redirect link="/explore" name="Explore" pathname={pathname} />
-        <Redirect link="/Stats" name="Stats" pathname={pathname} />
-        {account || address ? (
-          <Redirect link="/create" name="Create" pathname={pathname} />
-        ) : (
-          <LoginPopup 
-            button={
-              <button className="w-20 flex justify-center cursor-pointer text-gray-700 dark:text-gray-500 hover:text-customBlue dark:hover:text-gray-200">
-                Create
-              </button>
-            } 
-            handleClick={handleClick} 
-          />
-        )}
-      </div>
+   <div className="hidden lg:block">
+    <Redirects />
+   </div>
     </div>
   );
 };
