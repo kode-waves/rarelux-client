@@ -5,6 +5,7 @@ import PopupModel from "./PopupModel";
 import { Input } from "./ui/input";
 import Image from "next/image";
 import Logo from "@/app/Images/logo.png";
+import metaMask from "@/app/Images/metaMask.png";
 import { AccountContext } from '../context/context';
 
 const LoginPopup = (props) => {
@@ -12,7 +13,6 @@ const LoginPopup = (props) => {
   const { button } = props;
 
   const handleClick = async () => {
-    console.log("Button clicked"); // Debugging line
     await connectWallet();
   };
 
@@ -21,8 +21,8 @@ const LoginPopup = (props) => {
       <div className="flex justify-center">
         <Image src={Logo} alt="RareLux Logo" className="w-20 py-4" />
       </div>
-      <button className="bg-[#f6851b] py-2 rounded-md text-white w-full hover:bg-[#cd6116]" onClick={handleClick} type="submit">
-        Login From MetaMask
+      <button className="py-2 flex rounded-md  bg-gray-800 hover:bg-gray-900 dark:text-darkModeColor text-white justify-center items-center dark:bg-gray-100 dark:hover:bg-gray-300 w-full " onClick={handleClick} type="submit">
+       <Image src={metaMask} alt="metamask" className="w-10 mr-4" /> Connect with MetaMask
       </button>
       <div className="flex justify-center my-2">
         <span>Or</span>

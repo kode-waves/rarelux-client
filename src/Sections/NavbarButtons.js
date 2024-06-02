@@ -36,6 +36,7 @@ const NavbarButtons = () => {
 
   // Handle logout and clear local storage
   const handleLogout = () => {
+    console.log("ButtonClicked")
     storage.Delete('account');
     storage.Delete('wallet');
     setAccount(null)
@@ -55,7 +56,7 @@ const NavbarButtons = () => {
           title="Your Wallet"
           button={<IconButton icon={<LuWallet2 size={24} />} />}
         >
-          <h1>Your Wallet balance: {walletBalance}</h1>
+          <h1>Your Wallet balance: {walletBalance ? walletBalance : balance}</h1>
         </PopupModel>
       ) : (
         <LoginPopup
@@ -67,8 +68,13 @@ const NavbarButtons = () => {
       {account || address ? (
         <NextHoverCard button={<button>
           <Image src={Logo} alt="Image" className="w-10 " />
-        </button>} hoverBodyclassName="w-24">
-          <button onClick={handleLogout}>Logout</button>
+        </button>} hoverBodyclassName="w-auto">
+          <DropdownButtons  name="Dashboard"/>
+          <DropdownButtons  name="Notifications"/>
+          <DropdownButtons  name="Messages"/>
+          <DropdownButtons  name="Settings"/>
+          <DropdownButtons onClick={handleLogout} name="Logout"/>
+
         </NextHoverCard>
       ) : (
         <LoginPopup
@@ -77,7 +83,7 @@ const NavbarButtons = () => {
         />
       )}
     </div>
-  );
+  );  
 };
 
 export default NavbarButtons;
@@ -91,3 +97,10 @@ const IconButton = ({ icon, onClick }) => (
     {icon}
   </button>
 );
+
+const DropdownButtons = (props) => {
+  const {name, onClick} = props
+  return(
+    <button onClick={onClick} className="flex py-2 hover:bg-gray-500 w-36 px-5 ">{name}</button>
+  )
+}
