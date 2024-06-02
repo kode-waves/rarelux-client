@@ -16,7 +16,7 @@ const Redirects = () => {
   };
 
   return (
-    <div className="flex justify-between font-semibold pl-24">
+    <div className="flex flex-col lg:flex-row justify-between items-center font-semibold  ">
     <Redirect link="/explore" name="Explore" pathname={pathname} />
     <Redirect link="/Stats" name="Stats" pathname={pathname} />
     {account || address ? (

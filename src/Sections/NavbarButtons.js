@@ -83,7 +83,7 @@ const NavbarButtons = () => {
         />
       )}
     </div>
-  );  
+  );
 };
 
 export default NavbarButtons;
