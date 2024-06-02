@@ -37,27 +37,14 @@ const MiddleNav = () => {
           <FaSearch className="text-white" />
         </div>
         <div>
-          <input className="border-0 focus:outline-none text-white bg-gray-400 dark:bg-gray-400 w-96 h-8 mr-4" />
+          <input className="border-0 focus:outline-none text-white bg-gray-400 dark:bg-gray-400 h-8 mr-4" />
         </div>
       </div>
-   <div className="hidden lg:block">
+   <div className="hidden lg:block pl-5">
     <Redirects />
    </div>
     </div>
   );
-};
-
-const Redirect = (props) => {
-  const { link, name, pathname } = props;
-  console.log("pathname == link ------------",pathname,link,pathname == link )
-  return(
-    <div className="w-20 flex justify-center">
-    <Link href={link} className={`cursor-pointer  ${pathname == link ? "text-customBlue dark:text-gray-200" : "text-gray-700  dark:text-gray-500 hover:text-customBlue dark:hover:text-gray-200"}`}>
-      {name}
-    </Link>
-  </div>
-
-  )
 };
 
 export default MiddleNav;
