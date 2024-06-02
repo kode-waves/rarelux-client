@@ -1,6 +1,6 @@
 "use client"; // Indicates that this component should be rendered on the client side
 import React, { useState, useEffect, useCallback } from "react";
-import { useRouter } from 'next/navigation'; // Importing the router from next/navigation for client-side navigation
+import { useRouter } from "next/navigation"; // Importing the router from next/navigation for client-side navigation
 import Image from "next/image"; // Importing Next.js Image component for optimized image rendering
 import MiddleNav from "@/Sections/MiddleNav"; // Importing the MiddleNav component
 import NavbarButtons from "@/Sections/NavbarButtons"; // Importing the NavbarButtons component
@@ -44,17 +44,17 @@ const Navbar = () => {
        ${prevScrollPos > 0 ? "bg-gray-100 dark:bg-darkModeColor py-4" : ""}
        `}
     >
-      <div className="flex justify-center">
-        <div className="flex justify-between max-w-custom w-full items-center">
-          <Image
-            src={logo}
-            className="shrink-0 h-12 w-12 cursor-pointer" // Add cursor pointer for better UX
-            alt="logo"
-            onClick={ handleClick} // Navigate to home on logo click
-          />
-          <div className="flex-grow flex justify-center items-center">
-            <MiddleNav /> {/* Render the MiddleNav component */}
-          </div>
+      <div className="flex justify-between max-w-custom w-full items-center m-auto">
+        <Image
+          src={logo}
+          className="shrink-0 h-12 w-12 cursor-pointer" // Add cursor pointer for better UX
+          alt="logo"
+          onClick={handleClick} // Navigate to home on logo click
+        />
+        <div className="flex-grow flex justify-center items-center">
+          <MiddleNav /> {/* Render the MiddleNav component */}
+        </div>
+        <div className="hidden lg:block">
           <NavbarButtons /> {/*  Render the NavbarButtons component */}
         </div>
       </div>
