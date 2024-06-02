@@ -8,9 +8,10 @@ import { AccountContext } from '../context/context';
 import storage from "@/lib/localstorage";
 import { usePathname } from 'next/navigation';
 
-const Navbar = () => {
+const MiddleNav = () => {
   const { account, connectWallet } = useContext(AccountContext);
   const pathname = usePathname(); // Get the current pathname
+  console.log("🚀 ~ Navbar ~ pathname:", pathname)
   const [mounted, setMounted] = useState(false); // State to check if component is mounted
   const [address, setAddress] = useState(null);
 
@@ -58,12 +59,17 @@ const Navbar = () => {
   );
 };
 
-const Redirect = ({ link, name, pathname }) => (
-  <div className="w-20 flex justify-center">
-    <Link href={link} className={`cursor-pointer text-gray-700 dark:text-gray-500 hover:text-customBlue dark:hover:text-gray-200 ${pathname === link ? "text-customBlue dark:text-gray-200" : ""}`}>
+const Redirect = (props) => {
+  const { link, name, pathname } = props;
+  console.log("pathname == link ------------",pathname,link,pathname == link )
+  return(
+    <div className="w-20 flex justify-center">
+    <Link href={link} className={`cursor-pointer  ${pathname == link ? "text-customBlue dark:text-gray-200" : "text-gray-700  dark:text-gray-500 hover:text-customBlue dark:hover:text-gray-200"}`}>
       {name}
     </Link>
   </div>
-);
 
-export default Navbar;
+  )
+};
+
+export default MiddleNav;
