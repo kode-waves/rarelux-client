@@ -79,7 +79,6 @@ const NavbarButtons = () => {
       ) : (
         <LoginPopup
           button={<IconButton icon={<FaUser size={24} />} />}
-          connectWallet={connectWallet}
         />
       )}
     </div>
