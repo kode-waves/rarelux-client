@@ -4,7 +4,7 @@ import { createContext, useContext, useState, useEffect } from 'react'; // Impor
 import Web3Modal from 'web3modal'; // Import Web3Modal for wallet connections
 import { ethers } from 'ethers'; // Import ethers.js for blockchain interactions
 import { Web3Provider } from '@ethersproject/providers'; // Import Web3Provider from ethersproject
-import AlertPopup from '@/components/AlertPopup';
+import { createUser } from '@/Apis/user';
 import storage from '@/lib/localstorage';
 
 // Create a context for managing account-related state and functions
@@ -54,6 +54,9 @@ export const AccountProvider = ({ children }) => {
       const walletProvider = new ethers.providers.Web3Provider(window.ethereum);
       const balance = await walletProvider.getBalance(address);
       const balanceInEth = ethers.utils.formatEther(balance);
+      await createUser(address).then(res => {
+        
+      })
       setAccount(address); // Save the account address in state
       setWalletBalance(balanceInEth); // Save the wallet balance in state
       storage.Create('account', address); // Use localStorage directly for simplicity
