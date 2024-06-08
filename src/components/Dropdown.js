@@ -24,13 +24,10 @@ const Dropdown = (props) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="">
         {/* <DropdownMenuLabel>Panel Position</DropdownMenuLabel> */}
-        <DropdownMenuRadioGroup value={position} key={position} onValueChange={setPosition}>
-          {list.map((name, index) => {
-         return <>
+        <DropdownMenuRadioGroup  value={position} onValueChange={setPosition}>
+          {list.map((name, index) => (
          <DropdownMenuRadioItem key={index} value={index} >{fixedName ? name + " " + fixedName : name}</DropdownMenuRadioItem>
-         {/* <DropdownMenuSeparator />  */}
-         </>
-          })}
+          ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

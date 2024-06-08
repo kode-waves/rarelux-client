@@ -1,21 +1,23 @@
+require('dotenv').config();
 import axios from "axios";
-import { isBadRequest } from "../lib/Http";
-import { API_URL, DEFAULT_API_KEY } from "../configs";
+
+// import { isBadRequest } from "../lib/Http";
+// import { API_URL, DEFAULT_API_KEY } from "../configs";
 // History
-import history from "../history";
+// import history from "../history";
 // Cookie
-import { COOKIE_SESSION_TOKEN } from "../lib/Cookie";
+// import { COOKIE_SESSION_TOKEN } from "../lib/Cookie";
 // Helper
-import { getCookie } from "../lib/Helper";
+// import { getCookie } from "../lib/Helper";
 
 export const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: `http://localhost:4043`,
   timeout: 50000,
   headers: {
     "Content-Type": "application/json",
     common: {
       //set token for authorization
-      Authorization: getCookie(COOKIE_SESSION_TOKEN),
+      // Authorization: getCookie(COOKIE_SESSION_TOKEN),
     },
   },
 });
@@ -25,7 +27,7 @@ export function get(url, callback) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: getCookie(COOKIE_SESSION_TOKEN),
+      // Authorization: getCookie(COOKIE_SESSION_TOKEN),
       Pragma: "no-cache",
     },
   })
@@ -60,7 +62,7 @@ export function apiClientPostPublic(apiUrl, data, callback) {
     .catch((error) => {
       let errorMessage;
       if (error && error.response && error.response.status === 401) {
-        history.push("/login");
+        // history.push("/login");
       } else if (isBadRequest(error)) {
         const errorRequest = error.response.request;
         if (errorRequest && errorRequest.response) {

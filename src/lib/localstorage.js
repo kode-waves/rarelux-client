@@ -4,7 +4,7 @@ class LocalStorage {
             const response = localStorage.getItem(name);
             return response
           } else {
-            console.error("localStorage is not available in this environment");
+           return
           }
     }
 
@@ -13,7 +13,7 @@ class LocalStorage {
             const response =  localStorage.setItem(name, value);
             return response
           } else {
-            console.error("localStorage is not available in this environment");
+           return
           }
     }
     static Delete(name) {
@@ -21,7 +21,7 @@ class LocalStorage {
             const response =  localStorage.removeItem(name);
             return response
           } else {
-            console.error("localStorage is not available in this environment");
+           return
           }
     }
 }
