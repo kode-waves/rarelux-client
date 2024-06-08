@@ -12,7 +12,6 @@ import Redirects from "./Redirects";
 const MiddleNav = () => {
   const { account, connectWallet } = useContext(AccountContext);
   const pathname = usePathname(); // Get the current pathname
-  console.log("🚀 ~ Navbar ~ pathname:", pathname)
   const [mounted, setMounted] = useState(false); // State to check if component is mounted
   const [address, setAddress] = useState(null);
 
